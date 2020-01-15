@@ -1,15 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Index from '../components/Index.vue';
+import Welcome from '../components/Chat/Welcome.vue';
 import AddSmoothie from '../components/AddSmoothie.vue';
 import EditSmoothie from '../components/EditSmoothie.vue';
+import Chat from '../components/Chat/Chat.vue';
 
 Vue.use(VueRouter);
 
 const routes = [{
         path: "/",
-        name: "Index",
-        component: Index
+        name: "Welcome",
+        component: Welcome
     },
     {
         path: "/add-smoothie",
@@ -26,6 +27,22 @@ const routes = [{
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: EditSmoothie
+    },
+    {
+        path: "/chat",
+        name: "Chat",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: Chat,
+        props: true,
+        beforeEnter: (to, from, next) => {
+            if (to.params.name) {
+                next()
+            } else {
+                next({ name: 'Welcome' })
+            }
+        }
     }
 ];
 
