@@ -4,13 +4,14 @@ import Welcome from '../components/Chat/Welcome.vue';
 import AddSmoothie from '../components/AddSmoothie.vue';
 import EditSmoothie from '../components/EditSmoothie.vue';
 import Chat from '../components/Chat/Chat.vue';
+import Gmap from '../components/Home/Gmap.vue';
 
 Vue.use(VueRouter);
 
 const routes = [{
         path: "/",
-        name: "Welcome",
-        component: Welcome
+        name: "Gmap",
+        component: Gmap
     },
     {
         path: "/add-smoothie",
