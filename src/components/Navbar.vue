@@ -4,7 +4,8 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
+      <router-link :to="{name:'Index'}">
+        <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -23,16 +24,17 @@
           width="100"
         />
       </div>
+      </router-link>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+      <router-link :to="{name:'AddSmoothie'}">
+        <v-btn
+       
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <span class="mr-2">Add smoothie</span>
+        <v-icon>add</v-icon>
       </v-btn>
+      </router-link>
     </v-app-bar>
 </template>

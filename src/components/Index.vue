@@ -9,6 +9,10 @@
     v-for="smoothie in smoothies" :key="smoothie.id"
   >
    <v-icon class="float-lg-right" @click="deleteSmoothie(smoothie.id)">delete</v-icon>
+   <router-link :to="{name:'EditSmoothie', params:{smoothie_slug:smoothie.slug}}">
+
+       <v-icon class="float-lg-right primary--text">edit</v-icon>
+   </router-link>
 
     <v-card-title>{{smoothie.title}}</v-card-title>
 
@@ -87,7 +91,8 @@ export default {
                         return smoothie.id!=id;
                     })
                 })
-        }
+        },
+        
     },
 }
 </script>
