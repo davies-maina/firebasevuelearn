@@ -8,12 +8,18 @@ import Gmap from '../components/Home/Gmap.vue';
 import Signup from '../components/Auth/SignUp.vue';
 import Login from '../components/Auth/Login.vue';
 
+
 Vue.use(VueRouter);
 
 const routes = [{
         path: "/",
         name: "Gmap",
-        component: Gmap
+        component: Gmap,
+        meta: {
+
+            requiresAuth: true
+        }
+
     },
 
     {
@@ -71,5 +77,24 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 });
+
+/* export default router; */
+
+router.beforeEach((to, from, next) => {
+    //check to see if route has auth
+    if (to.matched.some(rec => rec.meta.requiresAuth)) {
+        //Get current user from firebase
+        let user = firebase.auth().currentUser
+
+        if (user) {
+            next();
+        } else {
+
+            next({ name: 'Login' })
+        }
+    } else {
+        next()
+    }
+})
 
 export default router;
