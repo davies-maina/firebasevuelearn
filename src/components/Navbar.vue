@@ -4,7 +4,7 @@
       color="primary"
       dark
     >
-      <router-link :to="{name:'Index'}">
+      <router-link :to="{name:'Gmap'}">
         <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -34,6 +34,20 @@
         <span class="mr-2">Signup</span>
         
       </v-btn>
+      <router-link :to="{name:'Login'}">
+        <v-btn
+       
+      >
+        <span class="mr-2">Login</span>
+
+      </v-btn>
+      </router-link>
+       <v-btn
+       @click="logout"
+      >
+        <span class="mr-2">Logout</span>
+        
+      </v-btn>
       </router-link>
 
       <router-link :to="{name:'AddSmoothie'}">
@@ -46,3 +60,18 @@
       </router-link>
     </v-app-bar>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout(){
+
+      firebase.auth().signOut()
+        .then(()=>{
+
+          this.$router.push({name:'Login'})
+        })
+    }
+  },
+}
+</script>
