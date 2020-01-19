@@ -27,28 +27,34 @@
       </router-link>
 
       <v-spacer></v-spacer>
-      <router-link :to="{name:'Signup'}">
+      <router-link :to="{name:'Signup'}" v-if="!user">
         <v-btn
+        
        
       >
         <span class="mr-2">Signup</span>
         
       </v-btn>
-      <router-link :to="{name:'Login'}">
+      </router-link>
+      <router-link :to="{name:'Login'}" v-if="!user">
         <v-btn
        
       >
         <span class="mr-2">Login</span>
 
       </v-btn>
+      
       </router-link>
+      <p v-if="user">{{user.email}}</p>
+      
        <v-btn
+       v-if="user"
        @click="logout"
       >
         <span class="mr-2">Logout</span>
         
       </v-btn>
-      </router-link>
+      
 
       <router-link :to="{name:'AddSmoothie'}">
         <v-btn
@@ -63,6 +69,12 @@
 
 <script>
 export default {
+
+  data() {
+    return {
+      user:''
+    }
+  },
   methods: {
     logout(){
 
@@ -72,6 +84,20 @@ export default {
           this.$router.push({name:'Login'})
         })
     }
+  },
+
+  created() {
+    firebase.auth().onAuthStateChanged((user)=>{
+
+      if (user) {
+        this.user=user
+      }
+
+      else{
+
+        this.user=''
+      }
+    })
   },
 }
 </script>
