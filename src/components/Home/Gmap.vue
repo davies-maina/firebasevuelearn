@@ -6,6 +6,7 @@
 
 <script>
 /* import firebase from 'firebase' */
+import db from '../../firebase/init';
 export default {
     data(){
 
@@ -31,13 +32,34 @@ export default {
     },
 
     mounted(){
-
+        let user=firebase.auth().currentUser;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((pos)=>{
 
                 this.lat=pos.coords.latitude;
                 this.lng=pos.coords.longitude;
-                this.renderMap();
+
+                //find particular user record then Storing position on firestore
+                db.collection('users').where('user_id', '==', user.uid).get()
+                    .then((snapshot)=>{
+                        snapshot.forEach((doc)=>{
+
+                            db.collection('users').doc(doc.id).update({
+                                geolocation:{
+                                     lat:pos.coords.latitude,
+                                    lng:pos.coords.longitude
+
+                                }
+
+                            })
+                        })
+
+                    })
+                        .then(()=>{
+
+                            this.renderMap();
+                        })
+                
             },(error)=>{
 
                 console.log(error)
