@@ -27,6 +27,14 @@
       </router-link>
 
       <v-spacer></v-spacer>
+      <router-link :to="{name:'Signup'}">
+        <v-btn
+       
+      >
+        <span class="mr-2">Signup</span>
+        
+      </v-btn>
+      </router-link>
 
       <router-link :to="{name:'AddSmoothie'}">
         <v-btn

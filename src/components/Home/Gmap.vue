@@ -5,6 +5,7 @@
 </template>
 
 <script>
+/* import firebase from 'firebase' */
 export default {
     data(){
 
@@ -31,7 +32,11 @@ export default {
 
     mounted(){
 
-        this.renderMap()
+        this.renderMap();
+        console.log(firebase.auth().currentUser)
+        /* setTimeout(() => {
+            console.log(firebase.auth().currentUser)
+        }, 2000); */
     }
 }
 </script>
