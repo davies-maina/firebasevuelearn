@@ -7,6 +7,7 @@ import Chat from '../components/Chat/Chat.vue';
 import Gmap from '../components/Home/Gmap.vue';
 import Signup from '../components/Auth/SignUp.vue';
 import Login from '../components/Auth/Login.vue';
+import Profile from '../components/Profile/UsersProfile.vue'
 
 
 Vue.use(VueRouter);
@@ -32,6 +33,19 @@ const routes = [{
         meta: {
 
             requiresAuth: false
+        }
+    },
+
+    {
+        path: "/profile/:id",
+        name: "Profile",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: Profile,
+        meta: {
+
+            requiresAuth: true
         }
     },
     {

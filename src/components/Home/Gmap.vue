@@ -51,7 +51,7 @@ export default {
 
                             marker.addListener('click', ()=>{
 
-                                console.log(doc.id)
+                               this.$router.push({name:'Profile', params:{id:doc.id}})
                             })
                         }
                     })
